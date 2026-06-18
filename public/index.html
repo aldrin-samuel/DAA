@@ -2,38 +2,50 @@
 <html>
 <head>
     <title>Linear Search</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 40px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
 
-    <h2>Linear Search</h2>
+<h2>Linear Search (JS)</h2>
 
-    <input type="number" id="number">
-    <button onclick="searchNumber()">Search</button>
+<input type="text" id="arrayInput" placeholder="e.g. 1,2,3,4,5">
+<br>
+<input type="number" id="target" placeholder="Enter number to search">
+<br>
 
-    <h3 id="result"></h3>
+<button onclick="search()">Search</button>
 
-    <script>
-        async function searchNumber() {
+<h3 id="result"></h3>
 
-            const value =
-                document.getElementById("number").value;
+<script>
+function search() {
+    const arr = document.getElementById("arrayInput").value
+        .split(",")
+        .map(Number);
 
-            const response =
-                await fetch(`/search/${value}`);
+    const target = Number(document.getElementById("target").value);
 
-            const data =
-                await response.json();
-
-            if (data.found) {
-                document.getElementById("result").innerText =
-                    `Found at index ${data.index}`;
-            } else {
-                document.getElementById("result").innerText =
-                    data.message;
-            }
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === target) {
+            document.getElementById("result").innerText =
+                `Found at index ${i}`;
+            return;
         }
-    </script>
+    }
 
-    
+    document.getElementById("result").innerText =
+        "Not found";
+}
+</script>
+
 </body>
 </html>
