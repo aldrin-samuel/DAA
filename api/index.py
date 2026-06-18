@@ -2,16 +2,18 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/")
-def home():
+@app.get("/search/{value}")
+def search(value: int):
     array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    input_value = 7
 
     for i in range(len(array)):
-        if array[i] == input_value:
+        if array[i] == value:
             return {
-                "message": "Element found",
+                "found": True,
                 "index": i
             }
 
-    return {"message": "Element not found"}
+    return {
+        "found": False,
+        "message": "Element not found"
+    }
