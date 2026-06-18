@@ -4,3 +4,4 @@ for i in range(len(array)):
     if array[i] == input_value:
         print(f"Element found at index: {i}")
         break
+else:    print("Element not found in the array.")
